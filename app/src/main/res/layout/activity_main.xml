@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="friendmodelview"
+            type="com.aapps.mvvm.sampleapp.viewmodel.FriendViewModel"></variable>
+
+        <variable
+            name="iMainActivity"
+            type="com.aapps.mvvm.sampleapp.viewmodel.IMainActivity" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/White"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@{friendmodelview.name}"
+            android:textColor="@color/Black"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp">
+
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                app:imageUrl="@{friendmodelview.image}" />
+
+            <!--app:imageUrl="@{testUrl}"-->
+            <!--app:imageUrl="@{friendmodelview.image}"-->
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_margin="10dp"
+            android:onClick="@{() -> iMainActivity.openLinkedInProfile()}"
+            android:visibility="@{friendmodelview.hasLinkedInProfile()? View.VISIBLE : View.INVISIBLE}">
+
+
+            <ImageView
+                android:id="@+id/linkedin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/linkedin_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/orange_drawable_image"
+            android:onClick="@{() -> iMainActivity.showNextFriend()}"
+            android:padding="12dp"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/text_add_to_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Next"
+                android:textColor="@color/Black"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
